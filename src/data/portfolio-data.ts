@@ -137,7 +137,7 @@ export const skills: SkillCategory[] = [
   },
   {
     category: 'Cloud & Tools',
-    icon: 'Cloudcog',
+    icon: 'Wrench',
     skills: [
       { name: 'AWS' },
       { name: 'Firebase' },

@@ -1,15 +1,19 @@
-import { Monitor, Server, Database, Wrench, Sparkles } from "lucide-react";
-import { skills } from "@/data/portfolio-data";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { cn } from "@/lib/utils";
+import { Monitor, Server, Database, Wrench, Sparkles, Cpu } from 'lucide-react';
+import { skills } from '@/data/portfolio-data';
+import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
+import { cn } from '@/lib/utils';
 
 // Icon mapping for skill categories
-const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  Monitor,
-  Server,
-  Database,
-  Wrench,
-  Sparkles,
+const categoryIcons: Record<
+  string,
+  React.ComponentType<{ className?: string }>
+> = {
+  Monitor: Monitor,
+  Server: Server,
+  Database: Database,
+  Wrench: Wrench,
+  Sparkles: Sparkles,
+  Cpu: Cpu,
 };
 
 export function SkillsSection() {
@@ -22,15 +26,16 @@ export function SkillsSection() {
         <div
           ref={ref}
           className={cn(
-            "text-center mb-16 transition-all duration-700",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            'text-center mb-16 transition-all duration-700',
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           )}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Skills & <span className="gradient-text">Technologies</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            A comprehensive toolkit of technologies I use to build modern, scalable applications
+            A comprehensive toolkit of technologies I use to build modern,
+            scalable applications
           </p>
         </div>
 
@@ -38,7 +43,7 @@ export function SkillsSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skills.map((category, categoryIndex) => {
             const Icon = categoryIcons[category.icon];
-            
+
             return (
               <SkillCard
                 key={category.category}
@@ -55,7 +60,7 @@ export function SkillsSection() {
 }
 
 interface SkillCardProps {
-  category: typeof skills[0];
+  category: (typeof skills)[0];
   Icon?: React.ComponentType<{ className?: string }>;
   delay: number;
 }
@@ -67,9 +72,9 @@ function SkillCard({ category, Icon, delay }: SkillCardProps) {
     <div
       ref={ref}
       className={cn(
-        "group p-6 rounded-xl bg-card border border-border/50 card-hover",
-        "transition-all duration-500",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        'group p-6 rounded-xl bg-card border border-border/50 card-hover',
+        'transition-all duration-500',
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       )}
       style={{ transitionDelay: `${delay}ms` }}
     >
