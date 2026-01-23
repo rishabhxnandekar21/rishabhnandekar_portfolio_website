@@ -1,12 +1,33 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { SkillsSection } from "@/components/sections/SkillsSection";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { ResumeSection } from "@/components/sections/ResumeSection";
+import { ExperienceSection } from "@/components/sections/ExperienceSection";
+import { AchievementsSection } from "@/components/sections/AchievementsSection";
+import { BlogsSection } from "@/components/sections/BlogsSection";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { Toaster } from "@/components/ui/sonner";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background text-foreground">
+      <Navbar />
+      
+      <main>
+        <HeroSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <ResumeSection />
+        <ExperienceSection />
+        <AchievementsSection />
+        <BlogsSection />
+        <ContactSection />
+      </main>
+      
+      <Footer />
+      <Toaster position="bottom-right" />
     </div>
   );
 };
