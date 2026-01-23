@@ -88,7 +88,7 @@ export const personalInfo: PersonalInfo = {
   email: 'rishabhnandekar380@gmail.com',
   phone: '+91 8878535377',
   location: 'Ahmedabad, Gujarat, India',
-  avatarUrl: '/profile.jpg',
+  avatarUrl: '/profile.png',
   resumeUrl: '/resume.pdf',
 };
 
@@ -101,13 +101,11 @@ export const skills: SkillCategory[] = [
     icon: 'Monitor',
     skills: [
       { name: 'React' },
-      { name: 'TypeScript' },
       { name: 'JavaScript' },
-      { name: 'Next.js' },
       { name: 'HTML5' },
       { name: 'CSS3' },
       { name: 'Tailwind CSS' },
-      { name: 'Redux' },
+      { name: 'Next.js' },
     ],
   },
   {
@@ -117,43 +115,48 @@ export const skills: SkillCategory[] = [
       { name: 'Node.js' },
       { name: 'Express.js' },
       { name: 'Python' },
-      { name: 'Django' },
+      { name: 'FastAPI' },
       { name: 'REST APIs' },
-      { name: 'GraphQL' },
+      { name: 'JWT' },
+      { name: 'Socket.io' },
     ],
   },
   {
     category: 'Databases',
     icon: 'Database',
+    skills: [{ name: 'MongoDB' }, { name: 'PostgreSQL' }, { name: 'MySQL' }],
+  },
+  {
+    category: 'AI & Generative AI',
+    icon: 'Cpu',
     skills: [
-      { name: 'PostgreSQL' },
-      { name: 'MongoDB' },
-      { name: 'MySQL' },
-      { name: 'Redis' },
-      { name: 'Supabase' },
+      { name: 'Large Language Models (LLMs)' },
+      { name: 'RAG (Retrieval Augmented Generation)' },
+      { name: 'LangChain' },
     ],
   },
   {
-    category: 'DevOps & Tools',
-    icon: 'Wrench',
+    category: 'Cloud & Tools',
+    icon: 'Cloudcog',
     skills: [
-      { name: 'Git' },
-      { name: 'Docker' },
       { name: 'AWS' },
-      { name: 'CI/CD' },
-      { name: 'Linux' },
+      { name: 'Firebase' },
       { name: 'Vercel' },
+      { name: 'Git' },
+      { name: 'GitHub' },
+      { name: 'Linux' },
     ],
   },
   {
-    category: 'Other Skills',
+    category: 'Core CS & Other Skills',
     icon: 'Sparkles',
     skills: [
+      { name: 'Data Structures & Algorithms' },
+      { name: 'Object-Oriented Programming (OOPS)' },
+      { name: 'Operating Systems' },
+      { name: 'Computer Networks' },
+      { name: 'DBMS' },
       { name: 'Problem Solving' },
-      { name: 'Data Structures' },
-      { name: 'Algorithms' },
-      { name: 'Agile/Scrum' },
-      { name: 'Technical Writing' },
     ],
   },
 ];
@@ -164,12 +167,22 @@ export const skills: SkillCategory[] = [
 export const projects: Project[] = [
   {
     id: '1',
-    title: 'E-Commerce Platform',
+    title: 'Nyay Saar',
     description:
-      'A full-stack e-commerce solution with real-time inventory management and secure payment processing.',
+      'Under Development: Court Order Extraction & Summarization System.',
     longDescription:
-      'Built a comprehensive e-commerce platform featuring user authentication, product catalog management, shopping cart functionality, and integration with Stripe for secure payments. The platform includes an admin dashboard for inventory management and order tracking.',
-    techStack: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Redis', 'Docker'],
+      'AI-powered legal document intelligence system that extracts structured information from long court order PDFs and generates accurate, human-readable summaries with conversational Q&A support.',
+    techStack: [
+      'Python',
+      'FastAPI',
+      'React',
+      'Tailwind CSS',
+      'Gemini API',
+      'LangChain',
+      'RAG',
+      'Vector Database',
+      'MYpuPDF (PDF Processing)',
+    ],
     imageUrl: '/placeholder.svg',
     githubUrl: 'https://github.com/username/ecommerce',
     liveUrl: 'https://ecommerce-demo.com',
@@ -339,11 +352,11 @@ export const blogPosts: BlogPost[] = [
 // SOCIAL LINKS
 // ============================================
 export const socialLinks: SocialLinks = {
-  github: 'https://github.com/alexjohnson',
-  linkedin: 'https://linkedin.com/in/alexjohnson',
-  leetcode: 'https://leetcode.com/alexjohnson',
-  twitter: 'https://twitter.com/alexjohnson',
-  email: 'mailto:alex.johnson@email.com',
+  github: 'https://github.com/rishabhxnandekar21',
+  linkedin: 'https://www.linkedin.com/in/rishabhnandekar211',
+  leetcode: 'https://leetcode.com/',
+  twitter: 'https://twitter.com/',
+  email: 'mailto:rishabhnandekar@gmail.com',
 };
 
 // ============================================
