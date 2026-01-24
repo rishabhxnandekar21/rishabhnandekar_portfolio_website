@@ -3,6 +3,7 @@ import { Menu, X, Home, Code, FolderOpen, Briefcase, Trophy, BookOpen, Mail } fr
 import { cn } from "@/lib/utils";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { navItems } from "@/data/portfolio-data";
+import { usePageReady } from "@/contexts/PageLoadContext";
 
 // Icon mapping for navigation items
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -18,6 +19,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isPageReady } = usePageReady();
 
   const sectionIds = navItems.map((item) => item.id);
   const { activeSection, scrollToSection } = useScrollSpy({ sectionIds, offset: 150 });
@@ -55,8 +57,12 @@ export function Navbar() {
       <nav
         className={cn(
           "fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block",
-          "transition-all duration-300 ease-out"
+          "transition-all duration-500 ease-out",
+          isPageReady
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-5"
         )}
+        style={{ transitionDelay: isPageReady ? "0ms" : "0ms" }}
       >
         <div
           className={cn(
@@ -91,7 +97,12 @@ export function Navbar() {
       </nav>
 
       {/* Mobile Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 md:hidden">
+      <nav
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 md:hidden transition-all duration-500 ease-out",
+          isPageReady ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
+        )}
+      >
         <div
           className={cn(
             "flex items-center justify-between px-4 py-3",

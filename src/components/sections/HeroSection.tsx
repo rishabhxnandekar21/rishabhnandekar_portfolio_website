@@ -1,8 +1,11 @@
 import { ArrowDown, Download, FolderOpen, Github, Linkedin } from "lucide-react";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { personalInfo, socialLinks } from "@/data/portfolio-data";
+import { usePageReady } from "@/contexts/PageLoadContext";
+import { cn } from "@/lib/utils";
 
 export function HeroSection() {
+  const { isPageReady } = usePageReady();
   const scrollToProjects = () => {
     const section = document.getElementById("projects");
     if (section) {
@@ -29,7 +32,15 @@ export function HeroSection() {
       <div className="container-custom relative z-10 pt-20 md:pt-0">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Profile Avatar */}
-          <div className="relative animate-fade-in">
+          <div
+            className={cn(
+              "relative transition-all duration-600 ease-out",
+              isPageReady
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            )}
+            style={{ transitionDelay: isPageReady ? "100ms" : "0ms" }}
+          >
             <div className="relative">
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary to-cyan-300 rounded-full blur-2xl opacity-30 animate-pulse-glow" />
@@ -54,30 +65,70 @@ export function HeroSection() {
           {/* Content */}
           <div className="flex-1 text-center lg:text-left max-w-2xl">
             {/* Tagline */}
-            <div className="animate-fade-in opacity-0 delay-100" style={{ animationFillMode: 'forwards' }}>
+            <div
+              className={cn(
+                "transition-all duration-600 ease-out",
+                isPageReady
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              )}
+              style={{ transitionDelay: isPageReady ? "200ms" : "0ms" }}
+            >
               <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
                 {personalInfo.tagline}
               </span>
             </div>
 
             {/* Name */}
-            <h1 className="animate-fade-in opacity-0 delay-200 text-4xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ animationFillMode: 'forwards' }}>
+            <h1
+              className={cn(
+                "text-4xl md:text-5xl lg:text-6xl font-bold mb-4 transition-all duration-600 ease-out",
+                isPageReady
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              )}
+              style={{ transitionDelay: isPageReady ? "300ms" : "0ms" }}
+            >
               Hi, I'm{" "}
               <span className="gradient-text">{personalInfo.name}</span>
             </h1>
 
             {/* Title */}
-            <h2 className="animate-fade-in opacity-0 delay-300 text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light mb-6" style={{ animationFillMode: 'forwards' }}>
+            <h2
+              className={cn(
+                "text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light mb-6 transition-all duration-600 ease-out",
+                isPageReady
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              )}
+              style={{ transitionDelay: isPageReady ? "400ms" : "0ms" }}
+            >
               {personalInfo.title}
             </h2>
 
             {/* Bio */}
-            <p className="animate-fade-in opacity-0 delay-400 text-base md:text-lg text-muted-foreground leading-relaxed mb-8" style={{ animationFillMode: 'forwards' }}>
+            <p
+              className={cn(
+                "text-base md:text-lg text-muted-foreground leading-relaxed mb-8 transition-all duration-600 ease-out",
+                isPageReady
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              )}
+              style={{ transitionDelay: isPageReady ? "500ms" : "0ms" }}
+            >
               {personalInfo.bio}
             </p>
 
             {/* CTA Buttons */}
-            <div className="animate-fade-in opacity-0 delay-500 flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8" style={{ animationFillMode: 'forwards' }}>
+            <div
+              className={cn(
+                "flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8 transition-all duration-600 ease-out",
+                isPageReady
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              )}
+              style={{ transitionDelay: isPageReady ? "600ms" : "0ms" }}
+            >
               <InteractiveHoverButton
                 text="View Projects"
                 icon={<FolderOpen className="w-5 h-5" />}
@@ -95,7 +146,15 @@ export function HeroSection() {
             </div>
 
             {/* Social Links */}
-            <div className="animate-fade-in opacity-0 delay-600 flex items-center justify-center lg:justify-start gap-4" style={{ animationFillMode: 'forwards' }}>
+            <div
+              className={cn(
+                "flex items-center justify-center lg:justify-start gap-4 transition-all duration-600 ease-out",
+                isPageReady
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              )}
+              style={{ transitionDelay: isPageReady ? "700ms" : "0ms" }}
+            >
               <a
                 href={socialLinks.github}
                 target="_blank"
