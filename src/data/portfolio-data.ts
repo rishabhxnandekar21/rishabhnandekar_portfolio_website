@@ -188,6 +188,7 @@ export const projects: Project[] = [
     liveUrl: 'https://ecommerce-demo.com',
     featured: true,
   },
+  /*
   {
     id: '2',
     title: 'Task Management App',
@@ -218,20 +219,7 @@ export const projects: Project[] = [
     imageUrl: '/placeholder.svg',
     githubUrl: 'https://github.com/username/ai-content',
     featured: true,
-  },
-  {
-    id: '4',
-    title: 'Real-time Chat Application',
-    description:
-      'A scalable messaging platform supporting private and group conversations with file sharing.',
-    longDescription:
-      'Built a real-time messaging application with support for one-on-one and group chats. Features include message encryption, file and image sharing, read receipts, typing indicators, and push notifications.',
-    techStack: ['React', 'Socket.io', 'Express', 'MongoDB', 'AWS S3'],
-    imageUrl: '/placeholder.svg',
-    githubUrl: 'https://github.com/username/chat-app',
-    liveUrl: 'https://chat-demo.com',
-    featured: false,
-  },
+  },*/
 ];
 
 // ============================================
@@ -285,22 +273,23 @@ export const experiences: Experience[] = [
 export const achievements: Achievement[] = [
   {
     id: '1',
-    title: "Dean's List - Academic Excellence",
-    organization: 'State University',
-    date: '2024',
+    title: 'Vice-chairperson)',
+    organization: 'IEEE Computer Society PDEU',
+    date: '2024-2025',
     description:
-      'Achieved top 5% academic standing for four consecutive semesters.',
-    type: 'award',
+      'Led a team of 40+ tech students to organize technical events, workshops, and seminars on campus. Worked closely with the team to plan and execute activities, learn new technologies together, and helped make IEEE the most active student chapter on campus during 2024–2025.',
+    type: 'leadership',
   },
   {
     id: '2',
-    title: 'First Place - Hackathon',
-    organization: 'TechFest 2024',
-    date: 'March 2024',
+    title: 'General Secretary',
+    organization: 'VGA- The filmmaking Club of PDEU',
+    date: '2025-26',
     description:
-      'Won first place in a 48-hour hackathon with a team project focused on sustainability.',
-    type: 'competition',
+      'Being part of VGA allowed me to truly follow my passion for filmmaking. As the General Secretary, I helped with the daily working of the club, coordinated with the team, and took important decisions to keep everything running smoothly. This role gave me the chance to work on creative ideas while also handling responsibilities and learning how to manage a team effectively',
+    type: 'leadership',
   },
+  /*
   {
     id: '3',
     title: 'AWS Certified Cloud Practitioner',
@@ -327,7 +316,7 @@ export const achievements: Achievement[] = [
     description:
       'Active contributor to open-source projects with 50+ merged pull requests.',
     type: 'volunteer',
-  },
+  },*/
 ];
 
 // ============================================
