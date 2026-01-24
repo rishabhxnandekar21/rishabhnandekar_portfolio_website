@@ -289,16 +289,16 @@ export const achievements: Achievement[] = [
       'Being part of VGA allowed me to truly follow my passion for filmmaking. As the General Secretary, I helped with the daily working of the club, coordinated with the team, and took important decisions to keep everything running smoothly. This role gave me the chance to work on creative ideas while also handling responsibilities and learning how to manage a team effectively',
     type: 'leadership',
   },
-  /*
   {
     id: '3',
-    title: 'AWS Certified Cloud Practitioner',
-    organization: 'Amazon Web Services',
-    date: '2024',
+    title: 'Certified Full Stack Web Developer',
+    organization: '100xDevs',
+    date: '2025',
     description:
-      'Earned certification demonstrating foundational cloud computing knowledge.',
+      'Completed an end-to-end full stack web development course covering frontend, backend, databases, and real-world project building. Gained hands-on experience in building scalable web applications from scratch.',
     type: 'certification',
   },
+  /*
   {
     id: '4',
     title: 'Technical Lead - Developer Club',
