@@ -1,17 +1,24 @@
-import { ArrowDown, Download, FolderOpen, Github, Linkedin } from "lucide-react";
-import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
-import { personalInfo, socialLinks } from "@/data/portfolio-data";
-import { usePageReady } from "@/contexts/PageLoadContext";
-import { cn } from "@/lib/utils";
+import {
+  ArrowDown,
+  Download,
+  FolderOpen,
+  Github,
+  Linkedin,
+} from 'lucide-react';
+import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
+import { personalInfo, socialLinks } from '@/data/portfolio-data';
+import { usePageReady } from '@/contexts/PageLoadContext';
+import { cn } from '@/lib/utils';
 
 export function HeroSection() {
   const { isPageReady } = usePageReady();
   const scrollToProjects = () => {
-    const section = document.getElementById("projects");
+    const section = document.getElementById('projects');
     if (section) {
       const yOffset = -80;
-      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      const y =
+        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
@@ -22,7 +29,7 @@ export function HeroSection() {
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
-      
+
       {/* Animated background orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
@@ -34,17 +41,17 @@ export function HeroSection() {
           {/* Profile Avatar */}
           <div
             className={cn(
-              "relative transition-all duration-600 ease-out",
+              'relative transition-all duration-600 ease-out',
               isPageReady
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
             )}
-            style={{ transitionDelay: isPageReady ? "100ms" : "0ms" }}
+            style={{ transitionDelay: isPageReady ? '100ms' : '0ms' }}
           >
             <div className="relative">
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary to-cyan-300 rounded-full blur-2xl opacity-30 animate-pulse-glow" />
-              
+
               {/* Avatar container */}
               <div className="relative w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl shadow-primary/20">
                 <img
@@ -52,12 +59,6 @@ export function HeroSection() {
                   alt={personalInfo.name}
                   className="w-full h-full object-cover"
                 />
-              </div>
-              
-              {/* Status indicator */}
-              <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-card px-3 py-1.5 rounded-full border border-border/50 shadow-lg">
-                <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" />
-                <span className="text-sm font-medium">Available</span>
               </div>
             </div>
           </div>
@@ -67,12 +68,12 @@ export function HeroSection() {
             {/* Tagline */}
             <div
               className={cn(
-                "transition-all duration-600 ease-out",
+                'transition-all duration-600 ease-out',
                 isPageReady
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-8'
               )}
-              style={{ transitionDelay: isPageReady ? "200ms" : "0ms" }}
+              style={{ transitionDelay: isPageReady ? '200ms' : '0ms' }}
             >
               <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
                 {personalInfo.tagline}
@@ -82,26 +83,25 @@ export function HeroSection() {
             {/* Name */}
             <h1
               className={cn(
-                "text-4xl md:text-5xl lg:text-6xl font-bold mb-4 transition-all duration-600 ease-out",
+                'text-4xl md:text-5xl lg:text-6xl font-bold mb-4 transition-all duration-600 ease-out',
                 isPageReady
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-8'
               )}
-              style={{ transitionDelay: isPageReady ? "300ms" : "0ms" }}
+              style={{ transitionDelay: isPageReady ? '300ms' : '0ms' }}
             >
-              Hi, I'm{" "}
-              <span className="gradient-text">{personalInfo.name}</span>
+              Hi, I'm <span className="gradient-text">{personalInfo.name}</span>
             </h1>
 
             {/* Title */}
             <h2
               className={cn(
-                "text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light mb-6 transition-all duration-600 ease-out",
+                'text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light mb-6 transition-all duration-600 ease-out',
                 isPageReady
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-8'
               )}
-              style={{ transitionDelay: isPageReady ? "400ms" : "0ms" }}
+              style={{ transitionDelay: isPageReady ? '400ms' : '0ms' }}
             >
               {personalInfo.title}
             </h2>
@@ -109,12 +109,12 @@ export function HeroSection() {
             {/* Bio */}
             <p
               className={cn(
-                "text-base md:text-lg text-muted-foreground leading-relaxed mb-8 transition-all duration-600 ease-out",
+                'text-base md:text-lg text-muted-foreground leading-relaxed mb-8 transition-all duration-600 ease-out',
                 isPageReady
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-8'
               )}
-              style={{ transitionDelay: isPageReady ? "500ms" : "0ms" }}
+              style={{ transitionDelay: isPageReady ? '500ms' : '0ms' }}
             >
               {personalInfo.bio}
             </p>
@@ -122,12 +122,12 @@ export function HeroSection() {
             {/* CTA Buttons */}
             <div
               className={cn(
-                "flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8 transition-all duration-600 ease-out",
+                'flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8 transition-all duration-600 ease-out',
                 isPageReady
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-8'
               )}
-              style={{ transitionDelay: isPageReady ? "600ms" : "0ms" }}
+              style={{ transitionDelay: isPageReady ? '600ms' : '0ms' }}
             >
               <InteractiveHoverButton
                 text="View Projects"
@@ -135,7 +135,7 @@ export function HeroSection() {
                 onClick={scrollToProjects}
                 className="text-foreground"
               />
-              
+
               <a href={personalInfo.resumeUrl} download>
                 <InteractiveHoverButton
                   text="Download Resume"
@@ -148,12 +148,12 @@ export function HeroSection() {
             {/* Social Links */}
             <div
               className={cn(
-                "flex items-center justify-center lg:justify-start gap-4 transition-all duration-600 ease-out",
+                'flex items-center justify-center lg:justify-start gap-4 transition-all duration-600 ease-out',
                 isPageReady
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-8'
               )}
-              style={{ transitionDelay: isPageReady ? "700ms" : "0ms" }}
+              style={{ transitionDelay: isPageReady ? '700ms' : '0ms' }}
             >
               <a
                 href={socialLinks.github}
