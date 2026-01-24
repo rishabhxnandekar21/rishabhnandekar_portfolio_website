@@ -1,11 +1,19 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Mail, Phone, MapPin, Send, Github, Linkedin, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Github,
+  Linkedin,
+  ExternalLink,
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Form,
   FormControl,
@@ -13,29 +21,29 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { toast } from "sonner";
-import { personalInfo, socialLinks } from "@/data/portfolio-data";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { cn } from "@/lib/utils";
+} from '@/components/ui/form';
+import { toast } from 'sonner';
+import { personalInfo, socialLinks } from '@/data/portfolio-data';
+import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
+import { cn } from '@/lib/utils';
 
 // Form validation schema
 const contactSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(2, { message: "Name must be at least 2 characters" })
-    .max(100, { message: "Name must be less than 100 characters" }),
+    .min(2, { message: 'Name must be at least 2 characters' })
+    .max(100, { message: 'Name must be less than 100 characters' }),
   phone: z
     .string()
     .trim()
-    .min(10, { message: "Please enter a valid phone number" })
-    .max(20, { message: "Phone number is too long" }),
+    .min(10, { message: 'Please enter a valid phone number' })
+    .max(20, { message: 'Phone number is too long' }),
   message: z
     .string()
     .trim()
-    .min(10, { message: "Message must be at least 10 characters" })
-    .max(1000, { message: "Message must be less than 1000 characters" }),
+    .min(10, { message: 'Message must be at least 10 characters' })
+    .max(1000, { message: 'Message must be less than 1000 characters' }),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -47,22 +55,22 @@ export function ContactSection() {
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
-      name: "",
-      phone: "",
-      message: "",
+      name: '',
+      phone: '',
+      message: '',
     },
   });
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    toast.success("Message sent successfully!", {
+
+    toast.success('Message sent successfully!', {
       description: "Thank you for reaching out. I'll get back to you soon!",
     });
-    
+
     form.reset();
     setIsSubmitting(false);
   };
@@ -74,15 +82,16 @@ export function ContactSection() {
         <div
           ref={ref}
           className={cn(
-            "text-center mb-16 transition-all duration-700",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            'text-center mb-16 transition-all duration-700',
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           )}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Get In <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Have a project in mind or want to discuss opportunities? I'd love to hear from you!
+            Have a project in mind or want to discuss opportunities? I'd love to
+            hear from you!
           </p>
         </div>
 
@@ -112,13 +121,18 @@ interface ContactFormProps {
   isVisible: boolean;
 }
 
-function ContactForm({ form, onSubmit, isSubmitting, isVisible }: ContactFormProps) {
+function ContactForm({
+  form,
+  onSubmit,
+  isSubmitting,
+  isVisible,
+}: ContactFormProps) {
   return (
     <div
       className={cn(
-        "p-8 rounded-xl bg-card border border-border/50",
-        "transition-all duration-700 delay-200",
-        isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+        'p-8 rounded-xl bg-card border border-border/50',
+        'transition-all duration-700 delay-200',
+        isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
       )}
     >
       <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
@@ -151,7 +165,7 @@ function ContactForm({ form, onSubmit, isSubmitting, isVisible }: ContactFormPro
                 <FormLabel>Phone Number</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="+1 (555) 000-0000"
+                    placeholder="+91 00000-00000"
                     {...field}
                     className="bg-muted/50 border-border focus:border-primary"
                   />
@@ -169,7 +183,7 @@ function ContactForm({ form, onSubmit, isSubmitting, isVisible }: ContactFormPro
                 <FormLabel>Message</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Tell me about your project or inquiry..."
+                    placeholder="Ask question or inquiry"
                     rows={5}
                     {...field}
                     className="bg-muted/50 border-border focus:border-primary resize-none"
@@ -208,9 +222,9 @@ function ContactInfo({ isVisible }: { isVisible: boolean }) {
   return (
     <div
       className={cn(
-        "flex flex-col justify-center",
-        "transition-all duration-700 delay-300",
-        isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+        'flex flex-col justify-center',
+        'transition-all duration-700 delay-300',
+        isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
       )}
     >
       {/* Contact Details */}
@@ -225,7 +239,7 @@ function ContactInfo({ isVisible }: { isVisible: boolean }) {
           icon={Phone}
           label="Phone"
           value={personalInfo.phone}
-          href={`tel:${personalInfo.phone.replace(/\D/g, "")}`}
+          href={`tel:${personalInfo.phone.replace(/\D/g, '')}`}
         />
         <ContactItem
           icon={MapPin}
