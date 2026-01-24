@@ -1,7 +1,6 @@
 import { ArrowDown, Download, FolderOpen, Github, Linkedin } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { personalInfo, socialLinks } from "@/data/portfolio-data";
-import { cn } from "@/lib/utils";
 
 export function HeroSection() {
   const scrollToProjects = () => {
@@ -79,26 +78,20 @@ export function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="animate-fade-in opacity-0 delay-500 flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8" style={{ animationFillMode: 'forwards' }}>
-              <Button
-                size="lg"
+              <InteractiveHoverButton
+                text="View Projects"
+                icon={<FolderOpen className="w-5 h-5" />}
                 onClick={scrollToProjects}
-                className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30"
-              >
-                <FolderOpen className="w-5 h-5" />
-                View Projects
-              </Button>
+                className="text-foreground"
+              />
               
-              <Button
-                size="lg"
-                variant="outline"
-                asChild
-                className="gap-2 border-primary/50 hover:bg-primary/10 hover:text-primary transition-all"
-              >
-                <a href={personalInfo.resumeUrl} download>
-                  <Download className="w-5 h-5" />
-                  Download Resume
-                </a>
-              </Button>
+              <a href={personalInfo.resumeUrl} download>
+                <InteractiveHoverButton
+                  text="Download Resume"
+                  icon={<Download className="w-5 h-5" />}
+                  className="text-foreground"
+                />
+              </a>
             </div>
 
             {/* Social Links */}
