@@ -89,7 +89,7 @@ export const personalInfo: PersonalInfo = {
   phone: '+91 8878535377',
   location: 'Ahmedabad, Gujarat, India',
   avatarUrl: '/profile.png',
-  resumeUrl: '/resume.pdf',
+  resumeUrl: '/rishabh_nandekar_resume.pdf',
 };
 
 // ============================================
@@ -169,9 +169,9 @@ export const projects: Project[] = [
     id: '1',
     title: 'Nyay Saar',
     description:
-      'Under Development: Court Order Extraction & Summarization System.',
+      '("Under development") Court Order Extraction & Summarization System.',
     longDescription:
-      'AI-powered legal document intelligence system that extracts structured information from long court order PDFs and generates accurate, human-readable summaries with conversational Q&A support.',
+      'Nyay Saar is a citizen-first AI platform that simplifies complex court orders into clear, easy-to-understand language. Powered by Gemini and a retrieval-based AI pipeline, it helps people understand court decisions and legal terms through concise summaries and conversational Q&A—bridging the gap between legal access and legal understanding without replacing lawyers.',
     techStack: [
       'Python',
       'FastAPI',
