@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Index from './pages/Index';
 import NotFound from './pages/NotFound';
 import { Preloader } from './components/Preloader';
-import { CustomCursor } from './components/CustomCursor';
 import { usePageLoad } from './hooks/use-page-load';
 import { PageLoadProvider } from './contexts/PageLoadContext';
 
@@ -17,9 +16,6 @@ function AppContent() {
 
   return (
     <PageLoadProvider isReady={!isLoading}>
-      {/* Custom cursor - desktop only */}
-      <CustomCursor />
-      
       {shouldShowPreloader && (
         <Preloader progress={progress} isExiting={isExiting} />
       )}
