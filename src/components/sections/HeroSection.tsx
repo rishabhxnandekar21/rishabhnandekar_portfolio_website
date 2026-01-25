@@ -4,6 +4,7 @@ import {
   FolderOpen,
   Github,
   Linkedin,
+  Mail,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
@@ -49,7 +50,7 @@ const avatarVariants = {
 
 export function HeroSection() {
   const { isPageReady } = usePageReady();
-  
+
   const scrollToProjects = () => {
     const section = document.getElementById('projects');
     if (section) {
@@ -130,7 +131,7 @@ export function HeroSection() {
           >
             {/* Tagline */}
             <motion.div variants={itemVariants}>
-              <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
+              <span className="inline-block px-4 py-1.5 mt-6 mb-6 text-sm font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
                 {personalInfo.tagline}
               </span>
             </motion.div>
@@ -194,6 +195,7 @@ export function HeroSection() {
               >
                 <Github className="w-5 h-5" />
               </a>
+
               <a
                 href={socialLinks.linkedin}
                 target="_blank"
@@ -202,6 +204,14 @@ export function HeroSection() {
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
+              </a>
+
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="p-3 rounded-full bg-card border border-border/50 hover:border-primary/50 hover:bg-primary/10 transition-all text-muted-foreground hover:text-primary interactive"
+                aria-label="Email"
+              >
+                <Mail className="w-5 h-5" />
               </a>
             </motion.div>
           </motion.div>
