@@ -106,18 +106,39 @@ export function Navbar() {
         <div
           className={cn(
             'relative flex items-center justify-center',
-            'px-8 py-3 min-w-[260px]',
+            'px-8 py-3 w-[92vw] max-w-[360px]',
             'rounded-full bg-black/40 backdrop-blur-xl',
             'border border-white/10 shadow-lg',
             'transition-all duration-300'
           )}
         >
           {/* CENTER TEXT */}
-          <div className="flex items-center gap-3">
-            <span className="h-2.5 w-2.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-sm font-medium text-white tracking-wide">
-              Rishabh Nandekar
-            </span>
+          {/* PRIMARY NAV BUTTONS */}
+          <div className="flex items-center gap-2">
+            {navItems
+              .filter((item) =>
+                ['home', 'skills', 'projects'].includes(item.id)
+              )
+              .map((item) => {
+                const Icon = iconMap[item.icon];
+                const isActive = activeSection === item.id;
+
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    className={cn(
+                      'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition',
+                      isActive
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-white/80 hover:text-primary hover:bg-primary/10'
+                    )}
+                  >
+                    {Icon && <Icon className="w-3.5 h-3.5" />}
+                    <span>{item.label}</span>
+                  </button>
+                );
+              })}
           </div>
 
           {/* HAMBURGER */}
@@ -151,38 +172,42 @@ export function Navbar() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              className="absolute top-16 left-1/2 -translate-x-1/2 w-[90%] rounded-2xl bg-black/60 backdrop-blur-xl border border-white/10 shadow-xl"
+              className="fixed top-20 inset-x-0 mx-auto w-[92%] max-w-[360px] rounded-2xl bg-black/60 backdrop-blur-xl border border-white/10 shadow-xl z-50"
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
             >
               <div className="p-4 flex flex-col gap-2">
-                {navItems.map((item, index) => {
-                  const Icon = iconMap[item.icon];
-                  const isActive = activeSection === item.id;
+                {navItems
+                  .filter(
+                    (item) => !['home', 'skills', 'projects'].includes(item.id)
+                  )
+                  .map((item, index) => {
+                    const Icon = iconMap[item.icon];
+                    const isActive = activeSection === item.id;
 
-                  return (
-                    <motion.button
-                      key={item.id}
-                      onClick={() => handleNavClick(item.id)}
-                      className={cn(
-                        'flex items-center gap-3 px-4 py-3 rounded-lg interactive',
-                        'text-base font-medium transition-all duration-200',
-                        'hover:bg-primary/10 hover:text-primary',
-                        isActive
-                          ? 'bg-primary/20 text-primary'
-                          : 'text-white/80'
-                      )}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                    >
-                      {Icon && <Icon className="w-5 h-5" />}
-                      <span>{item.label}</span>
-                    </motion.button>
-                  );
-                })}
+                    return (
+                      <motion.button
+                        key={item.id}
+                        onClick={() => handleNavClick(item.id)}
+                        className={cn(
+                          'flex items-center gap-3 px-4 py-3 rounded-lg interactive',
+                          'text-base font-medium transition-all duration-200',
+                          'hover:bg-primary/10 hover:text-primary',
+                          isActive
+                            ? 'bg-primary/20 text-primary'
+                            : 'text-white/80'
+                        )}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                      >
+                        {Icon && <Icon className="w-5 h-5" />}
+                        <span>{item.label}</span>
+                      </motion.button>
+                    );
+                  })}
               </div>
             </motion.div>
           )}
