@@ -1,6 +1,7 @@
+import { useRef } from "react";
 import { Trophy, Award, Medal, Users, Star, Heart } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 import { achievements, type Achievement } from "@/data/portfolio-data";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { cn } from "@/lib/utils";
 
 // Icon mapping for achievement types
@@ -12,19 +13,42 @@ const achievementIcons: Record<Achievement["type"], React.ComponentType<{ classN
   volunteer: Heart,
 };
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut' as const,
+    },
+  },
+};
+
 export function AchievementsSection() {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
     <section id="achievements" className="section-padding bg-card/30">
       <div className="container-custom">
         {/* Section Header */}
-        <div
+        <motion.div
           ref={ref}
-          className={cn(
-            "text-center mb-16 transition-all duration-700",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Achievements & <span className="gradient-text">Activities</span>
@@ -32,18 +56,22 @@ export function AchievementsSection() {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Recognitions, certifications, and extracurricular activities that shaped my journey
           </p>
-        </div>
+        </motion.div>
 
         {/* Achievements Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {achievements.map((achievement, index) => (
+        <motion.div
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+        >
+          {achievements.map((achievement) => (
             <AchievementCard
               key={achievement.id}
               achievement={achievement}
-              index={index}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -51,11 +79,9 @@ export function AchievementsSection() {
 
 interface AchievementCardProps {
   achievement: Achievement;
-  index: number;
 }
 
-function AchievementCard({ achievement, index }: AchievementCardProps) {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
+function AchievementCard({ achievement }: AchievementCardProps) {
   const Icon = achievementIcons[achievement.type] || Star;
 
   // Get accent color based on achievement type
@@ -79,14 +105,9 @@ function AchievementCard({ achievement, index }: AchievementCardProps) {
   const typeColor = getTypeColor(achievement.type);
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "group p-6 rounded-xl bg-card border border-border/50 card-hover",
-        "transition-all duration-500",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      )}
-      style={{ transitionDelay: `${index * 100}ms` }}
+    <motion.div
+      className="group p-6 rounded-xl bg-card border border-border/50 card-hover interactive"
+      variants={itemVariants}
     >
       {/* Icon */}
       <div className={cn("w-12 h-12 rounded-lg flex items-center justify-center mb-4", typeColor)}>
@@ -119,6 +140,6 @@ function AchievementCard({ achievement, index }: AchievementCardProps) {
           {achievement.type}
         </span>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Menu,
   X,
@@ -67,13 +68,11 @@ export function Navbar() {
   return (
     <>
       {/* Desktop Navbar - Floating Center */}
-      <nav
-        className={cn(
-          'fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block',
-          'transition-all duration-500 ease-out',
-          isPageReady ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'
-        )}
-        style={{ transitionDelay: isPageReady ? '0ms' : '0ms' }}
+      <motion.nav
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block"
+        initial={{ opacity: 0, y: -20 }}
+        animate={isPageReady ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
       >
         <div
           className={cn(
@@ -91,7 +90,7 @@ export function Navbar() {
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
                 className={cn(
-                  'flex items-center gap-2 px-4 py-2 rounded-full',
+                  'flex items-center gap-2 px-4 py-2 rounded-full interactive',
                   'text-sm font-medium transition-all duration-200',
                   'hover:bg-primary/10 hover:text-primary',
                   isActive
@@ -105,14 +104,14 @@ export function Navbar() {
             );
           })}
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Mobile Navbar */}
-      <nav
-        className={cn(
-          'fixed top-4 left-1/2 z-50 md:hidden w-[92%] -translate-x-1/2 transition-all duration-500 ease-out',
-          isPageReady ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'
-        )}
+      <motion.nav
+        className="fixed top-4 left-1/2 z-50 md:hidden w-[92%] -translate-x-1/2"
+        initial={{ opacity: 0, y: -20 }}
+        animate={isPageReady ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
       >
         <div
           className={cn(
@@ -131,7 +130,7 @@ export function Navbar() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="group flex flex-col gap-1.5 p-2"
+            className="group flex flex-col gap-1.5 p-2 interactive"
             aria-label="Toggle menu"
           >
             <span
@@ -156,56 +155,60 @@ export function Navbar() {
         </div>
 
         {/* Mobile Menu Dropdown */}
-        <div
-          className={cn(
-            'absolute top-16 left-1/2 w-[90%] -translate-x-1/2',
-            'rounded-2xl bg-black/60 backdrop-blur-xl',
-            'border border-white/10 shadow-xl',
-            'transition-all duration-300 ease-out',
-            isMobileMenuOpen
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 -translate-y-4 pointer-events-none'
-          )}
-        >
-          <div className="p-4 flex flex-col gap-2">
-            {navItems.map((item) => {
-              const Icon = iconMap[item.icon];
-              const isActive = activeSection === item.id;
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              className="absolute top-16 left-1/2 w-[90%] -translate-x-1/2 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/10 shadow-xl"
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+            >
+              <div className="p-4 flex flex-col gap-2">
+                {navItems.map((item, index) => {
+                  const Icon = iconMap[item.icon];
+                  const isActive = activeSection === item.id;
 
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className={cn(
-                    'flex items-center gap-3 px-4 py-3 rounded-lg',
-                    'text-base font-medium transition-all duration-200',
-                    'hover:bg-primary/10 hover:text-primary',
-                    isActive
-                      ? 'bg-primary/20 text-primary'
-                      : 'text-white/80 hover:text-primary'
-                  )}
-                >
-                  {Icon && <Icon className="w-5 h-5" />}
-                  <span>{item.label}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </nav>
+                  return (
+                    <motion.button
+                      key={item.id}
+                      onClick={() => handleNavClick(item.id)}
+                      className={cn(
+                        'flex items-center gap-3 px-4 py-3 rounded-lg interactive',
+                        'text-base font-medium transition-all duration-200',
+                        'hover:bg-primary/10 hover:text-primary',
+                        isActive
+                          ? 'bg-primary/20 text-primary'
+                          : 'text-white/80 hover:text-primary'
+                      )}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05, duration: 0.2 }}
+                    >
+                      {Icon && <Icon className="w-5 h-5" />}
+                      <span>{item.label}</span>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
 
       {/* Mobile menu backdrop */}
-      {isMobileMenuOpen && (
-        <div
-          className="
-      fixed inset-0 z-40 md:hidden
-      bg-gradient-to-b from-black/60 via-black/40 to-black/20
-      backdrop-blur-md
-      transition-opacity duration-300
-    "
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-      )}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            className="fixed inset-0 z-40 md:hidden bg-gradient-to-b from-black/60 via-black/40 to-black/20 backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -1,5 +1,6 @@
+import { useRef } from "react";
 import { BookOpen, Calendar, Clock, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { motion, useInView } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import {
   Carousel,
@@ -9,23 +10,44 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { blogPosts, type BlogPost } from "@/data/portfolio-data";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { cn } from "@/lib/utils";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut' as const,
+    },
+  },
+};
 
 export function BlogsSection() {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
   const hasPosts = blogPosts.length > 0;
 
   return (
     <section id="blog" className="section-padding">
       <div className="container-custom">
         {/* Section Header */}
-        <div
+        <motion.div
           ref={ref}
-          className={cn(
-            "text-center mb-16 transition-all duration-700",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Blog & <span className="gradient-text">Learning</span>
@@ -33,11 +55,16 @@ export function BlogsSection() {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Technical articles, tutorials, and insights from my learning journey
           </p>
-        </div>
+        </motion.div>
 
         {hasPosts ? (
           /* Blog Posts Carousel */
-          <div className="relative px-4 md:px-12">
+          <motion.div
+            className="relative px-4 md:px-12"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+          >
             <Carousel
               opts={{
                 align: "start",
@@ -55,13 +82,13 @@ export function BlogsSection() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-0 bg-card/80 border-border hover:bg-card hover:text-primary" />
-              <CarouselNext className="right-0 bg-card/80 border-border hover:bg-card hover:text-primary" />
+              <CarouselPrevious className="left-0 bg-card/80 border-border hover:bg-card hover:text-primary interactive" />
+              <CarouselNext className="right-0 bg-card/80 border-border hover:bg-card hover:text-primary interactive" />
             </Carousel>
-          </div>
+          </motion.div>
         ) : (
           /* Empty State */
-          <EmptyBlogState isVisible={isVisible} />
+          <EmptyBlogState isInView={isInView} />
         )}
       </div>
     </section>
@@ -74,21 +101,14 @@ interface BlogCardProps {
 }
 
 function BlogCard({ post, index }: BlogCardProps) {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
-
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "group h-full",
-        "transition-all duration-500",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      )}
-      style={{ transitionDelay: `${index * 100}ms` }}
+    <motion.div
+      className="group h-full"
+      variants={itemVariants}
     >
       <a
         href={post.url || "#"}
-        className="block h-full rounded-xl overflow-hidden bg-card border border-border/50 card-hover"
+        className="block h-full rounded-xl overflow-hidden bg-card border border-border/50 card-hover interactive"
       >
         {/* Post Image */}
         {post.imageUrl && (
@@ -137,17 +157,17 @@ function BlogCard({ post, index }: BlogCardProps) {
           </div>
         </div>
       </a>
-    </div>
+    </motion.div>
   );
 }
 
-function EmptyBlogState({ isVisible }: { isVisible: boolean }) {
+function EmptyBlogState({ isInView }: { isInView: boolean }) {
   return (
-    <div
-      className={cn(
-        "max-w-lg mx-auto text-center py-16 transition-all duration-700 delay-200",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      )}
+    <motion.div
+      className="max-w-lg mx-auto text-center py-16"
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
     >
       <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
         <BookOpen className="w-10 h-10 text-primary" />
@@ -175,6 +195,6 @@ function EmptyBlogState({ isVisible }: { isVisible: boolean }) {
           Career Advice
         </Badge>
       </div>
-    </div>
+    </motion.div>
   );
 }
