@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { motion, useInView } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import {
   Mail,
   Phone,
@@ -26,7 +27,7 @@ import {
 import { toast } from 'sonner';
 import { personalInfo, socialLinks } from '@/data/portfolio-data';
 
-// Form validation schema
+/* -------------------- Validation Schema -------------------- */
 const contactSchema = z.object({
   name: z
     .string()
@@ -47,6 +48,7 @@ const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
+/* -------------------- Main Section -------------------- */
 export function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
@@ -64,15 +66,32 @@ export function ContactSection() {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: data.name,
+          phone: data.phone,
+          message: data.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
 
-    toast.success('Message sent successfully!', {
-      description: "Thank you for reaching out. I'll get back to you soon!",
-    });
+      toast.success('Message sent successfully!', {
+        description: "Thank you for reaching out. I'll get back to you soon!",
+      });
 
-    form.reset();
-    setIsSubmitting(false);
+      form.reset();
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+
+      toast.error('Failed to send message', {
+        description: 'Please try again later or contact me directly via email.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -83,7 +102,7 @@ export function ContactSection() {
           ref={ref}
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -97,15 +116,12 @@ export function ContactSection() {
 
         <div className="max-w-5xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
             <ContactForm
               form={form}
               onSubmit={onSubmit}
               isSubmitting={isSubmitting}
               isInView={isInView}
             />
-
-            {/* Contact Info */}
             <ContactInfo isInView={isInView} />
           </div>
         </div>
@@ -114,6 +130,7 @@ export function ContactSection() {
   );
 }
 
+/* -------------------- Contact Form -------------------- */
 interface ContactFormProps {
   form: ReturnType<typeof useForm<ContactFormData>>;
   onSubmit: (data: ContactFormData) => Promise<void>;
@@ -131,8 +148,8 @@ function ContactForm({
     <motion.div
       className="p-8 rounded-xl bg-card border border-border/50"
       initial={{ opacity: 0, x: -30 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-      transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+      animate={isInView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.6, delay: 0.2 }}
     >
       <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
 
@@ -148,7 +165,7 @@ function ContactForm({
                   <Input
                     placeholder="Your name"
                     {...field}
-                    className="bg-muted/50 border-border focus:border-primary interactive"
+                    className="bg-muted/50 border-border focus:border-primary"
                   />
                 </FormControl>
                 <FormMessage />
@@ -166,7 +183,7 @@ function ContactForm({
                   <Input
                     placeholder="+91 00000-00000"
                     {...field}
-                    className="bg-muted/50 border-border focus:border-primary interactive"
+                    className="bg-muted/50 border-border focus:border-primary"
                   />
                 </FormControl>
                 <FormMessage />
@@ -182,10 +199,10 @@ function ContactForm({
                 <FormLabel>Message</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Ask question or inquiry"
                     rows={5}
+                    placeholder="Ask question or inquiry"
                     {...field}
-                    className="bg-muted/50 border-border focus:border-primary resize-none interactive"
+                    className="bg-muted/50 border-border focus:border-primary resize-none"
                   />
                 </FormControl>
                 <FormMessage />
@@ -197,11 +214,11 @@ function ContactForm({
             type="submit"
             size="lg"
             disabled={isSubmitting}
-            className="w-full bg-primary hover:bg-primary/90 gap-2 interactive"
+            className="w-full bg-primary hover:bg-primary/90 gap-2"
           >
             {isSubmitting ? (
               <>
-                <span className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 Sending...
               </>
             ) : (
@@ -217,28 +234,18 @@ function ContactForm({
   );
 }
 
+/* -------------------- Contact Info -------------------- */
 function ContactInfo({ isInView }: { isInView: boolean }) {
   return (
     <motion.div
       className="flex flex-col justify-center"
       initial={{ opacity: 0, x: 30 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-      transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+      animate={isInView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.6, delay: 0.3 }}
     >
-      {/* Contact Details */}
       <div className="space-y-6 mb-10">
-        <ContactItem
-          icon={Mail}
-          label="Email"
-          value={personalInfo.email}
-          href={`mailto:${personalInfo.email}`}
-        />
-        <ContactItem
-          icon={Phone}
-          label="Phone"
-          value={personalInfo.phone}
-          href={`tel:${personalInfo.phone.replace(/\D/g, '')}`}
-        />
+        <ContactItem icon={Mail} label="Email" value={personalInfo.email} />
+        <ContactItem icon={Phone} label="Phone" value={personalInfo.phone} />
         <ContactItem
           icon={MapPin}
           label="Location"
@@ -246,87 +253,62 @@ function ContactInfo({ isInView }: { isInView: boolean }) {
         />
       </div>
 
-      {/* Social Links */}
-      <div>
-        <h4 className="text-lg font-semibold mb-4">Connect with me</h4>
-        <div className="flex flex-wrap gap-3">
-          <SocialButton
-            href={socialLinks.github}
-            icon={Github}
-            label="GitHub"
-          />
-          <SocialButton
-            href={socialLinks.linkedin}
-            icon={Linkedin}
-            label="LinkedIn"
-          />
-          <SocialButton
-            href={socialLinks.leetcode}
-            icon={ExternalLink}
-            label="LeetCode"
-          />
-        </div>
-      </div>
-
-      {/* Availability */}
-      <div className="mt-10 p-5 rounded-lg bg-primary/5 border border-primary/20">
-        <div className="flex items-center gap-3">
-          <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-          <span className="text-sm font-medium">
-            Currently available for new opportunities
-          </span>
-        </div>
+      <h4 className="text-lg font-semibold mb-4">Connect with me</h4>
+      <div className="flex flex-wrap gap-3">
+        <SocialButton href={socialLinks.github} icon={Github} label="GitHub" />
+        <SocialButton
+          href={socialLinks.linkedin}
+          icon={Linkedin}
+          label="LinkedIn"
+        />
+        <SocialButton
+          href={socialLinks.leetcode}
+          icon={ExternalLink}
+          label="LeetCode"
+        />
       </div>
     </motion.div>
   );
 }
 
-interface ContactItemProps {
-  icon: React.ComponentType<{ className?: string }>;
+/* -------------------- Helpers -------------------- */
+function ContactItem({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: any;
   label: string;
   value: string;
-  href?: string;
-}
-
-function ContactItem({ icon: Icon, label, value, href }: ContactItemProps) {
-  const content = (
-    <div className="flex items-center gap-4 group">
-      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+}) {
+  return (
+    <div className="flex items-center gap-4">
+      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
         <Icon className="w-5 h-5" />
       </div>
       <div>
         <p className="text-sm text-muted-foreground">{label}</p>
-        <p className="font-medium group-hover:text-primary transition-colors">
-          {value}
-        </p>
+        <p className="font-medium">{value}</p>
       </div>
     </div>
   );
-
-  if (href) {
-    return (
-      <a href={href} className="block">
-        {content}
-      </a>
-    );
-  }
-
-  return content;
 }
 
-interface SocialButtonProps {
+function SocialButton({
+  href,
+  icon: Icon,
+  label,
+}: {
   href: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: any;
   label: string;
-}
-
-function SocialButton({ href, icon: Icon, label }: SocialButtonProps) {
+}) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-card border border-border/50 hover:border-primary/50 hover:bg-primary/10 transition-all text-muted-foreground hover:text-primary"
+      className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-card border border-border/50 hover:border-primary/50 hover:bg-primary/10 transition-all"
     >
       <Icon className="w-4 h-4" />
       <span className="text-sm font-medium">{label}</span>
