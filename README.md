@@ -1,73 +1,124 @@
-# Welcome to your Lovable project
+# Rishabh Nandekar — Portfolio Website
 
-## Project info
+A modern, minimalist, and responsive **single-page portfolio website** built to showcase my skills, projects, and experience as a **Full Stack Web Developer**.  
+This portfolio serves as my **digital CV** for recruiters, hiring managers, and fellow developers.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+---
 
-## How can I edit this code?
+## 🌐 Live Website
+(Add your deployed link here)
 
-There are several ways of editing your application.
+https://your-portfolio-domain.vercel.app
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 👋 About the Portfolio
 
-Changes made via Lovable will be committed automatically to this repo.
+This portfolio is designed with a **clean, professional, and developer-centric UI**, focusing on clarity, performance, and smooth interactions rather than flashy effects.
 
-**Use your preferred IDE**
+It highlights:
+- Who I am and what I work on
+- My technical skill set
+- Selected projects with detailed explanations
+- Resume access
+- Internship readiness and contact information
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+The site is fully responsive, SEO-optimized, and built to be **scalable for long-term use**.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## ✨ Key Features
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- Single-page landing portfolio
+- Dark theme with modern accent colors
+- Floating, centered navbar (desktop & mobile)
+- Typing animation for hero name & title (Magic UI)
+- Scroll-based section reveal animations
+- Project carousel with animated details
+- Resume download (no forced PDF preview)
+- Fully responsive (mobile, tablet, desktop)
+- Config-driven content (easy to update)
+- SEO-friendly structure
+- Contact form powered by EmailJS
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🛠️ Tech Stack
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
+### Frontend
+- React.js
 - TypeScript
-- React
-- shadcn-ui
 - Tailwind CSS
+- shadcn/ui
+- Magic UI
+- Framer Motion
 
-## How can I deploy this project?
+### Integrations
+- EmailJS (contact form)
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+### Tooling & Deployment
+- Vite
+- Git & GitHub
+- Vercel
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## 📁 Project Structure
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+src/
+├─ components/
+│  ├─ sections/
+│  ├─ ui/
+├─ data/
+│  └─ portfolio-data.ts
+├─ hooks/
+├─ contexts/
+├─ pages/
+├─ assets/
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+All portfolio content is controlled via portfolio-data.ts.
+
+---
+
+## ⚙️ Run Locally
+
+### Clone the repository
+git clone https://github.com/your-username/your-portfolio-repo.git
+cd your-portfolio-repo
+
+### Install dependencies
+npm install
+
+### Environment variables
+
+Create a .env file:
+
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+
+### Start dev server
+npm run dev
+
+---
+
+## 🚀 Deployment
+
+Optimized for Vercel.
+
+1. Push to GitHub
+2. Import into Vercel
+3. Add environment variables
+4. Deploy
+
+---
+
+## 📬 Contact
+
+Email: rishabh@example.com  
+LinkedIn: https://linkedin.com/in/your-profile  
+GitHub: https://github.com/your-username  
+
+---
+
+⭐ If you like this project, consider starring the repo!
