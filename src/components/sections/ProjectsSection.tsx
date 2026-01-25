@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useRef } from "react";
+import { ExternalLink, Github } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -17,23 +18,44 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { projects, type Project } from "@/data/portfolio-data";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { cn } from "@/lib/utils";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut' as const,
+    },
+  },
+};
 
 export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
     <section id="projects" className="section-padding">
       <div className="container-custom">
         {/* Section Header */}
-        <div
+        <motion.div
           ref={ref}
-          className={cn(
-            "text-center mb-16 transition-all duration-700",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Featured <span className="gradient-text">Projects</span>
@@ -41,10 +63,15 @@ export function ProjectsSection() {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             A collection of projects that showcase my skills and passion for building great software
           </p>
-        </div>
+        </motion.div>
 
         {/* Projects Carousel */}
-        <div className="relative px-4 md:px-12">
+        <motion.div
+          className="relative px-4 md:px-12"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+        >
           <Carousel
             opts={{
               align: "start",
@@ -66,10 +93,10 @@ export function ProjectsSection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-0 bg-card/80 border-border hover:bg-card hover:text-primary" />
-            <CarouselNext className="right-0 bg-card/80 border-border hover:bg-card hover:text-primary" />
+            <CarouselPrevious className="left-0 bg-card/80 border-border hover:bg-card hover:text-primary interactive" />
+            <CarouselNext className="right-0 bg-card/80 border-border hover:bg-card hover:text-primary interactive" />
           </Carousel>
-        </div>
+        </motion.div>
 
         {/* Project Detail Dialog */}
         <ProjectDialog
@@ -88,18 +115,11 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ project, index, onClick }: ProjectCardProps) {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
-
   return (
-    <div
-      ref={ref}
+    <motion.div
       onClick={onClick}
-      className={cn(
-        "group cursor-pointer h-full",
-        "transition-all duration-500",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      )}
-      style={{ transitionDelay: `${index * 100}ms` }}
+      className="group cursor-pointer h-full interactive"
+      variants={itemVariants}
     >
       <div className="h-full rounded-xl overflow-hidden bg-card border border-border/50 card-hover">
         {/* Project Image */}
@@ -173,7 +193,7 @@ function ProjectCard({ project, index, onClick }: ProjectCardProps) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

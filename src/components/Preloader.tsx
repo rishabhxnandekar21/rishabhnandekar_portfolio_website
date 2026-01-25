@@ -1,60 +1,67 @@
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface PreloaderProps {
   progress: number;
   isExiting: boolean;
 }
 
-export function Preloader({ progress, isExiting }: PreloaderProps) {
+export function Preloader({ isExiting }: PreloaderProps) {
   return (
-    <div
+    <motion.div
       className={cn(
         "fixed inset-0 z-[100] flex flex-col items-center justify-center",
-        "bg-background transition-all duration-400 ease-in-out",
-        isExiting && "opacity-0 scale-105"
+        "bg-background"
       )}
-      style={{
-        transitionDuration: isExiting ? "400ms" : "0ms",
-      }}
+      initial={{ opacity: 1 }}
+      animate={{ opacity: isExiting ? 0 : 1 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
     >
-      {/* Logo / Initials */}
-      <div
-        className={cn(
-          "relative mb-8 transition-all duration-300 ease-out",
-          "animate-preloader-logo"
-        )}
+      {/* Logo / Initials with rotating loader */}
+      <motion.div
+        className="relative"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        <div className="relative">
-          {/* Glow effect */}
-          <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl animate-pulse" />
+        {/* Soft glow effect */}
+        <div className="absolute inset-0 bg-primary/15 rounded-full blur-3xl scale-150" />
+        
+        {/* Rotating circular loader */}
+        <div className="relative w-20 h-20 flex items-center justify-center">
+          {/* Outer rotating ring */}
+          <motion.div
+            className="absolute inset-0 rounded-full border-2 border-transparent border-t-primary border-r-primary/50"
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 1.2,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
           
-          {/* Initials container */}
-          <div
-            className={cn(
-              "relative w-20 h-20 flex items-center justify-center",
-              "rounded-full border-2 border-primary/30",
-              "bg-card shadow-xl shadow-primary/10"
-            )}
+          {/* Inner rotating ring (slower, opposite direction) */}
+          <motion.div
+            className="absolute inset-2 rounded-full border border-transparent border-b-primary/40 border-l-primary/20"
+            animate={{ rotate: -360 }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+          
+          {/* Center initials */}
+          <motion.span
+            className="text-2xl font-bold gradient-text select-none z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
           >
-            <span className="text-3xl font-bold gradient-text select-none">
-              RN
-            </span>
-          </div>
+            RN
+          </motion.span>
         </div>
-      </div>
-
-      {/* Progress line */}
-      <div className="w-48 h-0.5 bg-muted rounded-full overflow-hidden">
-        <div
-          className="h-full bg-gradient-to-r from-primary to-cyan-300 rounded-full transition-all duration-150 ease-out"
-          style={{ width: `${Math.min(100, progress)}%` }}
-        />
-      </div>
-
-      {/* Loading text */}
-      <p className="mt-4 text-sm text-muted-foreground animate-pulse">
-        Loading...
-      </p>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

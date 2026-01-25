@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { motion, useInView } from 'framer-motion';
 import {
   Mail,
   Phone,
@@ -24,8 +25,6 @@ import {
 } from '@/components/ui/form';
 import { toast } from 'sonner';
 import { personalInfo, socialLinks } from '@/data/portfolio-data';
-import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
-import { cn } from '@/lib/utils';
 
 // Form validation schema
 const contactSchema = z.object({
@@ -49,7 +48,8 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 export function ContactSection() {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<ContactFormData>({
@@ -79,12 +79,12 @@ export function ContactSection() {
     <section id="contact" className="section-padding bg-card/30">
       <div className="container-custom">
         {/* Section Header */}
-        <div
+        <motion.div
           ref={ref}
-          className={cn(
-            'text-center mb-16 transition-all duration-700',
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          )}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Get In <span className="gradient-text">Touch</span>
@@ -93,7 +93,7 @@ export function ContactSection() {
             Have a project in mind or want to discuss opportunities? I'd love to
             hear from you!
           </p>
-        </div>
+        </motion.div>
 
         <div className="max-w-5xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12">
@@ -102,11 +102,11 @@ export function ContactSection() {
               form={form}
               onSubmit={onSubmit}
               isSubmitting={isSubmitting}
-              isVisible={isVisible}
+              isInView={isInView}
             />
 
             {/* Contact Info */}
-            <ContactInfo isVisible={isVisible} />
+            <ContactInfo isInView={isInView} />
           </div>
         </div>
       </div>
@@ -118,22 +118,21 @@ interface ContactFormProps {
   form: ReturnType<typeof useForm<ContactFormData>>;
   onSubmit: (data: ContactFormData) => Promise<void>;
   isSubmitting: boolean;
-  isVisible: boolean;
+  isInView: boolean;
 }
 
 function ContactForm({
   form,
   onSubmit,
   isSubmitting,
-  isVisible,
+  isInView,
 }: ContactFormProps) {
   return (
-    <div
-      className={cn(
-        'p-8 rounded-xl bg-card border border-border/50',
-        'transition-all duration-700 delay-200',
-        isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
-      )}
+    <motion.div
+      className="p-8 rounded-xl bg-card border border-border/50"
+      initial={{ opacity: 0, x: -30 }}
+      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+      transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
     >
       <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
 
@@ -149,7 +148,7 @@ function ContactForm({
                   <Input
                     placeholder="Your name"
                     {...field}
-                    className="bg-muted/50 border-border focus:border-primary"
+                    className="bg-muted/50 border-border focus:border-primary interactive"
                   />
                 </FormControl>
                 <FormMessage />
@@ -167,7 +166,7 @@ function ContactForm({
                   <Input
                     placeholder="+91 00000-00000"
                     {...field}
-                    className="bg-muted/50 border-border focus:border-primary"
+                    className="bg-muted/50 border-border focus:border-primary interactive"
                   />
                 </FormControl>
                 <FormMessage />
@@ -186,7 +185,7 @@ function ContactForm({
                     placeholder="Ask question or inquiry"
                     rows={5}
                     {...field}
-                    className="bg-muted/50 border-border focus:border-primary resize-none"
+                    className="bg-muted/50 border-border focus:border-primary resize-none interactive"
                   />
                 </FormControl>
                 <FormMessage />
@@ -198,7 +197,7 @@ function ContactForm({
             type="submit"
             size="lg"
             disabled={isSubmitting}
-            className="w-full bg-primary hover:bg-primary/90 gap-2"
+            className="w-full bg-primary hover:bg-primary/90 gap-2 interactive"
           >
             {isSubmitting ? (
               <>
@@ -214,18 +213,17 @@ function ContactForm({
           </Button>
         </form>
       </Form>
-    </div>
+    </motion.div>
   );
 }
 
-function ContactInfo({ isVisible }: { isVisible: boolean }) {
+function ContactInfo({ isInView }: { isInView: boolean }) {
   return (
-    <div
-      className={cn(
-        'flex flex-col justify-center',
-        'transition-all duration-700 delay-300',
-        isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-      )}
+    <motion.div
+      className="flex flex-col justify-center"
+      initial={{ opacity: 0, x: 30 }}
+      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+      transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
     >
       {/* Contact Details */}
       <div className="space-y-6 mb-10">
@@ -279,7 +277,7 @@ function ContactInfo({ isVisible }: { isVisible: boolean }) {
           </span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
