@@ -1,11 +1,12 @@
 # Rishabh Nandekar — Portfolio Website
 
 A modern, minimalist, and responsive **single-page portfolio website** built to showcase my skills, projects, and experience as a **Full Stack Web Developer**.  
-This portfolio serves as my **digital CV** for recruiters, hiring managers, and fellow developers.
+This portfolio serves as my **digital CV**
 
 ---
 
 ## 🌐 Live Website
+
 (Add your deployed link here)
 
 https://your-portfolio-domain.vercel.app
@@ -17,6 +18,7 @@ https://your-portfolio-domain.vercel.app
 This portfolio is designed with a **clean, professional, and developer-centric UI**, focusing on clarity, performance, and smooth interactions rather than flashy effects.
 
 It highlights:
+
 - Who I am and what I work on
 - My technical skill set
 - Selected projects with detailed explanations
@@ -46,6 +48,7 @@ The site is fully responsive, SEO-optimized, and built to be **scalable for long
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - React.js
 - TypeScript
 - Tailwind CSS
@@ -54,9 +57,11 @@ The site is fully responsive, SEO-optimized, and built to be **scalable for long
 - Framer Motion
 
 ### Integrations
+
 - EmailJS (contact form)
 
 ### Tooling & Deployment
+
 - Vite
 - Git & GitHub
 - Vercel
@@ -67,10 +72,10 @@ The site is fully responsive, SEO-optimized, and built to be **scalable for long
 
 src/
 ├─ components/
-│  ├─ sections/
-│  ├─ ui/
+│ ├─ sections/
+│ ├─ ui/
 ├─ data/
-│  └─ portfolio-data.ts
+│ └─ portfolio-data.ts
 ├─ hooks/
 ├─ contexts/
 ├─ pages/
@@ -83,10 +88,12 @@ All portfolio content is controlled via portfolio-data.ts.
 ## ⚙️ Run Locally
 
 ### Clone the repository
-git clone https://github.com/your-username/your-portfolio-repo.git
+
+git clone https://github.com/rishabhxnandekar21/rishabhnandekar_portfolio_website
 cd your-portfolio-repo
 
 ### Install dependencies
+
 npm install
 
 ### Environment variables
@@ -98,6 +105,7 @@ VITE_EMAILJS_TEMPLATE_ID=your_template_id
 VITE_EMAILJS_PUBLIC_KEY=your_public_key
 
 ### Start dev server
+
 npm run dev
 
 ---
@@ -115,9 +123,9 @@ Optimized for Vercel.
 
 ## 📬 Contact
 
-Email: rishabh@example.com  
-LinkedIn: https://linkedin.com/in/your-profile  
-GitHub: https://github.com/your-username  
+Email: rishabhnandekar380@gmail.com  
+LinkedIn: https://www.linkedin.com/in/rishabhnandekar211
+GitHub: https://github.com/rishabhxnandekar21
 
 ---
 
