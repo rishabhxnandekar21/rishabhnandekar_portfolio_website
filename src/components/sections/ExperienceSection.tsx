@@ -34,47 +34,65 @@ export function ExperienceSection() {
             <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-1/2" />
 
             {/* ================= INTERNSHIP SEEKING CARD ================= */}
-            <motion.div
-              className="relative mb-12 pl-8 md:pl-0"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-            >
-              {/* Timeline dot */}
-              <div className="absolute left-0 md:left-1/2 top-0 w-4 h-4 -translate-x-1/2 rounded-full bg-primary border-4 border-background shadow-lg shadow-primary/20" />
+            {experiences.map((exp, index) => {
+              const isLeft = index % 2 === 0;
 
-              {/* Card */}
-              <div className="md:w-[calc(50%-2rem)] md:ml-auto md:pl-8">
-                <div className="p-6 rounded-xl bg-card border border-border/50 card-hover interactive">
-                  {/* Header */}
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="p-3 rounded-lg bg-primary/10 text-primary shrink-0">
-                      <Briefcase className="w-5 h-5" />
-                    </div>
+              return (
+                <motion.div
+                  key={exp.id}
+                  className="relative mb-12 pl-8 md:pl-0"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={
+                    isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                  }
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.2 + index * 0.1,
+                    ease: 'easeOut',
+                  }}
+                >
+                  {/* Timeline Dot */}
+                  <div className="absolute left-0 md:left-1/2 top-0 w-4 h-4 -translate-x-1/2 rounded-full bg-primary border-4 border-background shadow-lg shadow-primary/20" />
 
-                    <div>
-                      <h3 className="text-lg font-semibold">
-                        Seeking Internship Opportunities
-                      </h3>
+                  {/* Card Alignment */}
+                  <div
+                    className={`md:w-[calc(50%-2rem)] ${
+                      isLeft ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
+                    }`}
+                  >
+                    <div className="p-6 rounded-xl bg-card border border-border/50 card-hover">
+                      {/* Header */}
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className="p-3 rounded-lg bg-primary/10 text-primary shrink-0">
+                          <Briefcase className="w-5 h-5" />
+                        </div>
 
-                      {/* Animated Badge */}
-                      <span className="inline-flex items-center gap-2 mt-1 px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary">
-                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                        Open to Internship
-                      </span>
+                        <div>
+                          <h3 className="text-lg font-semibold">{exp.role}</h3>
+
+                          <p className="text-sm text-muted-foreground">
+                            {exp.company} · {exp.startDate} - {exp.endDate}
+                          </p>
+
+                          {exp.type === 'internship' && (
+                            <Badge className="mt-2 bg-primary/10 text-primary border-none">
+                              Internship
+                            </Badge>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Responsibilities */}
+                      <ul className="list-disc list-inside text-sm text-muted-foreground space-y-2">
+                        {exp.responsibilities.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-
-                  {/* Content */}
-                  <p className="text-sm text-muted-foreground">
-                    Actively seeking Software Development / Full Stack
-                    internship roles. Currently building real-world projects,
-                    strengthening backend systems, and preparing for
-                    production-level software engineering work.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+                </motion.div>
+              );
+            })}
             {/* ================= END ================= */}
           </div>
         </div>
