@@ -105,17 +105,18 @@ export const skills: SkillCategory[] = [
       { name: 'HTML5' },
       { name: 'CSS3' },
       { name: 'Tailwind CSS' },
-      { name: 'Next.js' },
+      //{ name: 'Next.js' },
     ],
   },
   {
     category: 'Backend',
     icon: 'Server',
     skills: [
+      //{ name: '' },
       { name: 'Node.js' },
       { name: 'Express.js' },
       { name: 'Python' },
-      { name: 'FastAPI' },
+      //{ name: 'FastAPI' },
       { name: 'REST APIs' },
       { name: 'JWT' },
       { name: 'Socket.io' },
@@ -124,7 +125,7 @@ export const skills: SkillCategory[] = [
   {
     category: 'Databases',
     icon: 'Database',
-    skills: [{ name: 'MongoDB' }, { name: 'PostgreSQL' }, { name: 'MySQL' }],
+    skills: [{ name: 'MongoDB' }, { name: 'MySQL' }, { name: 'PostgreSQL' }],
   },
   {
     category: 'AI & Generative AI',
@@ -140,6 +141,7 @@ export const skills: SkillCategory[] = [
     icon: 'Wrench',
     skills: [
       { name: 'AWS' },
+      { name: 'Docker' },
       { name: 'Firebase' },
       { name: 'Vercel' },
       { name: 'Git' },
@@ -183,31 +185,34 @@ export const projects: Project[] = [
       'Vector Database',
       'MYpuPDF (PDF Processing)',
     ],
+    imageUrl: '',
+    githubUrl: '',
+    liveUrl: '',
+    featured: true,
+  },
+
+  {
+    id: '2',
+    title: 'VibeChat',
+    description:
+      'VibeChat is a real-time chat application that allows users to send and receive messages instantly in a secure environment. It is built to handle multiple active users at the same time while maintaining consistent performance.',
+    longDescription:
+      'VibeChat is a real-time messaging platform developed to support smooth communication between users with reliable message delivery and secure access control. During testing, the application handled over 200 concurrent users with average message latency between 150–180 ms.The system includes user authentication and protected routes to ensure secure session management. To improve performance under concurrent usage, the backend was optimized to reduce unnecessary database calls and improve response consistency.',
+    techStack: [
+      'React.js',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'Socket.io',
+      'JWT Authentication',
+      'Redis',
+    ],
     imageUrl: '/placeholder.svg',
-    githubUrl: 'https://github.com/username/ecommerce',
-    liveUrl: 'https://ecommerce-demo.com',
+    githubUrl: 'r',
+    liveUrl: '',
     featured: true,
   },
   /*
-  {
-    id: '2',
-    title: 'Task Management App',
-    description:
-      'A collaborative project management tool with real-time updates and team collaboration features.',
-    longDescription:
-      'Developed a real-time task management application that enables teams to collaborate effectively. Features include drag-and-drop task boards, real-time notifications, file attachments, and progress tracking with analytics dashboard.',
-    techStack: [
-      'Next.js',
-      'TypeScript',
-      'Supabase',
-      'Tailwind CSS',
-      'WebSocket',
-    ],
-    imageUrl: '/placeholder.svg',
-    githubUrl: 'https://github.com/username/taskmanager',
-    liveUrl: 'https://taskmanager-demo.com',
-    featured: true,
-  },
   {
     id: '3',
     title: 'AI Content Generator',
@@ -228,24 +233,28 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
   {
     id: '1',
-    role: 'Software Engineer Intern',
-    company: 'Tech Innovations Inc.',
-    companyUrl: 'https://techinnovations.com',
-    duration: '6 months',
-    startDate: 'Jun 2024',
-    endDate: 'Dec 2024',
+    role: 'Software Developer Intern',
+    company: 'InstaPrepAI by 7Classes',
+    companyUrl: 'https://instapreps.com/',
+    duration: '',
+    startDate: 'Feb 2026',
+    endDate: 'Present',
     responsibilities: [
-      'Developed and maintained RESTful APIs using Node.js and Express',
-      'Built responsive frontend components with React and TypeScript',
-      'Collaborated with senior developers on database optimization',
-      'Participated in code reviews and agile sprint planning',
+      'Developed and enhanced full stack web features using React.js and Node.js improving platform usability and performance.',
+      'Implemented dynamic UI components including authentication based routing, dropdown modules, and solution search features.',
+      'Debugged and resolved frontend and backend issues, improving overall system stability and user experience.',
+      'Worked on AWS cloud integrations including IAM configuration, service access validation, and model access troubleshooting',
     ],
     achievements: [
-      'Reduced API response time by 40% through query optimization',
-      'Implemented automated testing that increased code coverage by 25%',
+      'Contributed to production-ready features used by real users.',
+      'Gained hands-on experience with cloud services and containerized development workflows.',
+      'Improved application stability by debugging and resolving frontend state and routing issues.',
+      'Collaborated in a structured Git workflow using feature branches and merge requests.',
     ],
     type: 'internship',
   },
+
+  /*
   {
     id: '2',
     role: 'Frontend Developer (Contract)',
@@ -264,7 +273,7 @@ export const experiences: Experience[] = [
       'Delivered project 2 weeks ahead of schedule',
     ],
     type: 'work',
-  },
+  },*/
 ];
 
 // ============================================
@@ -273,7 +282,7 @@ export const experiences: Experience[] = [
 export const achievements: Achievement[] = [
   {
     id: '1',
-    title: 'Vice-chairperson)',
+    title: 'Vice Chairperson)',
     organization: 'IEEE Computer Society PDEU',
     date: '2024-2025',
     description:
@@ -298,6 +307,7 @@ export const achievements: Achievement[] = [
       'Completed an end-to-end full stack web development course covering frontend, backend, databases, and real-world project building. Gained hands-on experience in building scalable web applications from scratch.',
     type: 'certification',
   },
+
   /*
   {
     id: '4',
