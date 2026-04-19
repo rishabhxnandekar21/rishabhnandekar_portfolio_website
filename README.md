@@ -7,9 +7,7 @@ This portfolio serves as my **digital CV**
 
 ## 🌐 Live Website
 
-(Add your deployed link here)
-
-https://your-portfolio-domain.vercel.app
+https://www.rishabhnandekar.in/
 
 ---
 
@@ -52,9 +50,6 @@ The site is fully responsive, SEO-optimized, and built to be **scalable for long
 - React.js
 - TypeScript
 - Tailwind CSS
-- shadcn/ui
-- Magic UI
-- Framer Motion
 
 ### Integrations
 
