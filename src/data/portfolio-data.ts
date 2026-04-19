@@ -295,7 +295,7 @@ export const experiences: Experience[] = [
 export const achievements: Achievement[] = [
   {
     id: '1',
-    title: 'Vice Chairperson)',
+    title: 'Vice Chairperson',
     organization: 'IEEE Computer Society PDEU',
     date: '2024-2025',
     description:
