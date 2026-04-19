@@ -130,11 +130,11 @@ export function HeroSection() {
             animate={isPageReady ? 'visible' : 'hidden'}
           >
             {/* Tagline */}
-            <motion.div variants={itemVariants}>
+            {/*<motion.div variants={itemVariants}>
               <span className="inline-block px-4 py-1.5 mt-6 mb-6 text-sm font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
                 {personalInfo.tagline}
               </span>
-            </motion.div>
+            </motion.div>*/}
 
             {/* Name */}
             <motion.h1
