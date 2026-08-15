@@ -47,7 +47,7 @@ export function ResumeSection() {
                     {personalInfo.name}_Resume.pdf
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Updated April 2026
+                    Updated Recently
                   </p>
                 </div>
               </div>
