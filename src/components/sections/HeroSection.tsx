@@ -154,7 +154,7 @@ export function HeroSection() {
 
             {/* Bio */}
             <motion.p
-              className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8"
+              className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8 whitespace-pre-line"
               variants={itemVariants}
             >
               {personalInfo.bio}

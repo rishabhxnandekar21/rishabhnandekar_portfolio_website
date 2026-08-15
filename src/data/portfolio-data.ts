@@ -82,16 +82,17 @@ export interface SocialLinks {
 // ============================================
 export const personalInfo: PersonalInfo = {
   name: 'Rishabh Nandekar',
-  title: 'Software Developer',
-  tagline: "ICT '27 @ PDEU  |  Backend • Full Stack • Cloud & DevOps • Gen AI",
-  bio: "I'm a final year ICT student at PDEU who loves building products from scratch, taking full ownership and scaling them into something that lasts. I work with the MERN stack, Node.js, and RESTful APIs on the backend, and have integrated LLMs and RAG pipelines to solve problems that actually matter. I've deployed and managed infrastructure with AWS, Docker, and CI/CD pipelines, and I know what it takes to ship software that holds up in production. I think in systems and products, not just code. I thrive in the chaos and uncertainty of building something from zero, obsess over the problem being solved, and naturally gravitate toward owning the full arc of a product.",
+  title: 'Software Engineer | Backend & Cloud',
+  tagline: "ICT '27 @ PDEU | Backend • Full Stack • Cloud & DevOps • Gen AI",
+
+  bio: `I got into engineering because I wanted to build things people actually use — but somewhere along the way, I got just as curious about what keeps those things running at 2 AM without falling over.\n I'm a final-year B.Tech ICT student at PDEU, building across the intersection of Software Development and DevOps/Cloud Engineering.\n I work with backend systems, full-stack applications, AWS, Docker, and CI/CD, while going deeper into Kubernetes and cloud infrastructure.\n I like understanding systems beyond the surface — not just writing features, but figuring out how they work, how they scale, and how they hold up in production.`,
+
   email: 'rishabhnandekar380@gmail.com',
   phone: '+91 8878535377',
   location: 'Ahmedabad, Gujarat, India',
   avatarUrl: '/profile.png',
   resumeUrl: '/rishabh_nandekar_resume.pdf',
 };
-
 // ============================================
 // SKILLS
 // ============================================
@@ -119,60 +120,73 @@ export const skills: SkillCategory[] = [
       { name: 'FastAPI' },
       //{ name: 'Ruby on Rails' },
       { name: 'REST APIs' },
-      { name: 'System Design' },
+      { name: 'JWT Authentication' },
+      { name: 'RBAC' },
     ],
   },
   {
     category: 'Databases',
     icon: 'Database',
-    skills: [{ name: 'MongoDB' }, { name: 'MySQL' }, { name: 'PostgreSQL' }],
-  },
-  {
-    category: 'AI & Generative AI',
-    icon: 'Cpu',
     skills: [
-      { name: 'Large Language Models (LLMs)' },
-      { name: 'RAG (Retrieval Augmented Generation)' },
-      { name: 'LangChain' },
-      { name: 'AWS Bedrock' },
-      { name: 'Prompt Engineering' },
-    ],
-  },
-  {
-    category: 'DevOps & Cloud',
-    icon: 'Network',
-    skills: [
-      { name: 'AWS EC2' },
-      { name: 'AWS S3' },
-      { name: 'AWS Lambda' },
-      { name: 'AWS CloudWatch' },
-      { name: 'Docker' },
-      { name: 'Docker Compose' },
-      { name: 'CI/CD Pipelines' },
-      { name: 'Linux' },
+      { name: 'MongoDB' },
+      { name: 'PostgreSQL' },
+      { name: 'MySQL' },
       { name: 'Redis' },
     ],
   },
+
   {
-    category: 'Tools & Platforms',
+    category: 'Cloud & DevOps',
     icon: 'Wrench',
     skills: [
-      { name: 'Git' },
-      { name: 'GitHub' },
-      { name: 'GitLab' },
-      { name: 'Vercel' },
-      { name: 'Postman' },
+      { name: 'AWS' },
+      { name: 'AWS EC2' },
+      { name: 'AWS EKS' },
+      { name: 'AWS S3' },
+      { name: 'AWS IAM' },
+      { name: 'AWS Lambda' },
+      { name: 'AWS CloudWatch' },
+      { name: 'Docker' },
+      { name: 'Kubernetes' },
+      { name: 'Helm' },
+      { name: 'Terraform' },
+      { name: 'Jenkins' },
+      { name: 'CI/CD' },
+      { name: 'GitOps' },
+      { name: 'Argo CD' },
+      { name: 'Prometheus/Grafana' },
     ],
   },
+
   {
-    category: 'Core CS',
+    category: 'AI & RAG',
+    icon: 'Cpu',
+    skills: [
+      { name: 'RAG Pipelines' },
+      { name: 'LLM Applications' },
+      { name: 'Vector Search' },
+      { name: 'Embeddings' },
+      { name: 'Pinecone' },
+      { name: 'LangChain' },
+      { name: 'Prompt Engineering' },
+      { name: 'LLM based Retrieval Systems' },
+    ],
+  },
+
+  {
+    category: 'Core CS & Tools',
     icon: 'Sparkles',
     skills: [
       { name: 'Data Structures & Algorithms' },
-      { name: 'Object-Oriented Programming (OOP)' },
+      { name: 'Object Oriented Programming (OOP)' },
+      { name: 'DBMS' },
       { name: 'Operating Systems' },
       { name: 'Computer Networks' },
-      { name: 'DBMS' },
+      { name: 'System Design' },
+      { name: 'Git' },
+      { name: 'GitHub' },
+      { name: 'Linux' },
+      { name: 'Postman' },
     ],
   },
 ];
@@ -184,18 +198,19 @@ export const projects: Project[] = [
     id: '1',
     title: 'NyaySaar',
     description:
-      'AI legal assistant that makes court orders understandable for everyone.',
+      'AI-powered legal document analysis platform that turns complex court orders into clear, grounded answers.',
     longDescription:
-      "NyaySaar tackles one of India's biggest accessibility problems — most citizens can't understand the court orders that affect their lives. Built a custom RAG pipeline from scratch using Groq (Llama 3), Pinecone, and HuggingFace embeddings that chunks, indexes, and retrieves relevant legal context in real-time. Users can upload court documents and get plain-language summaries or ask questions conversationally — cutting analysis time from minutes to under 5 seconds.",
+      'Built a full-stack legal document analysis platform using a retrieval-augmented generation architecture. Court PDFs are parsed and chunked, converted into HuggingFace embeddings, indexed in Pinecone, and retrieved at query time to ground summaries and conversational answers. The platform uses FastAPI and React with Groq-hosted LLM inference and supports document-based Q&A and persona-aware responses.',
     techStack: [
       'Python',
       'FastAPI',
       'React',
       'Tailwind CSS',
-      'Groq (Llama 3)',
+      'RAG',
+      'Groq',
+      'Llama 3',
       'Pinecone',
       'HuggingFace Embeddings',
-      'RAG',
       'PyMuPDF',
     ],
     imageUrl: '/Nyay-Saar.png',
@@ -206,24 +221,53 @@ export const projects: Project[] = [
 
   {
     id: '2',
-    title: 'VibeChat',
+    title: 'End to End DevSecOps Pipeline',
     description:
-      'VibeChat is a real-time chat application that allows users to send and receive messages instantly in a secure environment. It is built to handle multiple active users at the same time while maintaining consistent performance.',
+      'Production-style CI/CD and GitOps pipeline with automated security, Kubernetes deployments, and AWS infrastructure.',
     longDescription:
-      'VibeChat is a real-time messaging platform developed to support smooth communication between users with reliable message delivery and secure access control. During testing, the application handled over 200 concurrent users with average message latency between 150–180 ms.The system includes user authentication and protected routes to ensure secure session management. To improve performance under concurrent usage, the backend was optimized to reduce unnecessary database calls and improve response consistency.',
+      'Designed an end-to-end DevSecOps workflow for a containerized three-tier application. Jenkins drives an 11-stage CI pipeline with GitLeaks, SonarQube, OWASP Dependency-Check, and Trivy security checks before Docker images are published. Terraform provisions AWS infrastructure including EKS, while Helm and Kubernetes manage deployments. GitOps with Argo CD separates CI from continuous delivery, enabling automated synchronization, auditable releases, and rollback through Git.',
     techStack: [
-      'React.js',
-      'Node.js',
-      'Express.js',
-      'MongoDB',
-      'Socket.io',
-      'JWT Authentication',
-      'Redis',
+      'Jenkins',
+      'Docker',
+      'Kubernetes',
+      'AWS EKS',
+      'Terraform',
+      'Helm',
+      'Argo CD',
+      'GitOps',
+      'GitLeaks',
+      'SonarQube',
+      'Trivy',
+      'CI/CD',
     ],
-    imageUrl: '/placeholder.svg',
-    githubUrl: 'r',
+    imageUrl: '/devsecops.png',
+    githubUrl:
+      'https://github.com/rishabhxnandekar21/End-to-End-DevSecOps-Pipeline',
     liveUrl: '',
     featured: true,
+  },
+
+  {
+    id: '3',
+    title: 'SafeBridge',
+    description:
+      'Secure, encrypted file-transfer utility designed for private peer-to-peer file sharing.',
+    longDescription:
+      'Built a lightweight cross-platform file-transfer utility that encrypts files locally before transmission. SafeBridge uses AES-256 encryption, PBKDF2 with HMAC-SHA256 for password-based key derivation, and unique initialization vectors per session. The application uses Python, Tkinter, and socket-based communication to transfer files directly between sender and recipient without relying on external storage services.',
+    techStack: [
+      'Python',
+      'Tkinter',
+      'Socket Programming',
+      'AES-256',
+      'PBKDF2',
+      'HMAC-SHA256',
+      'Cryptography',
+    ],
+    imageUrl: '/safebridge.png',
+    githubUrl:
+      'https://github.com/rishabhxnandekar21/ShareBridge---A-Secure-File-Sharing-Tool',
+    liveUrl: '',
+    featured: false,
   },
   /*
   {
@@ -246,47 +290,49 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
   {
     id: '1',
-    role: 'SDE Intern',
-    company: 'InstaPrepAI',
-    companyUrl: 'https://instapreps.com/',
+    role: 'Full Stack Developer Intern',
+    company: 'iTech Brains',
+    companyUrl: 'https://www.itechbrains.com/',
     duration: '2 Months',
-    startDate: 'Feb 2026',
-    endDate: 'April 2026',
+    startDate: 'May 2026',
+    endDate: 'Jun 2026',
     responsibilities: [
-      'Owned and shipped 5+ full-stack features end-to-end using Next.js, Node.js, and Ruby on Rails — from system design to production deployment across core platform modules.',
-      'Integrated and optimized RESTful APIs in a production environment serving 1000+ concurrent users, reducing average response latency by 20–30% through targeted backend improvements.',
-      'Collaborated cross-functionally with the AI team to improve chatbot efficiency and deployed an LLM model to AWS Bedrock, supporting model hosting and inference pipelines.',
-      'Managed CI/CD pipelines via GitLab CI, resolved merge conflicts across parallel branches, and maintained clean version history through active code reviews.',
+      'Built and deployed a MERN-based e-commerce platform spanning 10+ responsive pages and integrating 10+ REST APIs across authentication, product management, categories, reviews, and cart workflows.',
+      'Implemented JWT authentication, protected routes, and server-side validation to secure user and product-management workflows.',
+      'Developed and integrated full-stack features across the frontend and backend, taking features from implementation through deployment.',
+      'Worked in an Agile, Git-based development workflow involving feature development, testing, debugging, and code review cycles.',
     ],
     achievements: [
-      'Reduced API response latency by 20 – 30% in a production system handling 1000+ concurrent users — directly improving platform performance at scale.',
-      'Deployed an LLM model to AWS Bedrock in collaboration with the AI team, contributing to a measurable improvement in AI chatbot response efficiency.',
-      'Gained hands-on exposure to AWS EC2, S3, Bedrock, Lambda, and CloudWatch — supporting deployment pipelines and production infrastructure monitoring.',
-      'Independently managed feature branches, merge requests, and CI/CD workflows in a high-autonomy startup environment with real production impact.',
+      'Delivered a complete e-commerce application covering authentication, product management, reviews, categories, and cart functionality.',
+      'Integrated 10+ REST APIs across core application workflows.',
+      'Built 10+ responsive application pages using the MERN stack.',
+      'Gained hands-on experience in full-stack development, API integration, authentication, and deployment.',
     ],
     type: 'internship',
   },
 
-  /*
   {
     id: '2',
-    role: 'Frontend Developer (Contract)',
-    company: 'StartupXYZ',
-    companyUrl: 'https://startupxyz.com',
-    duration: '3 months',
-    startDate: 'Jan 2024',
-    endDate: 'Mar 2024',
+    role: 'Software Developer Intern',
+    company: 'InstaPrepAI',
+    companyUrl: 'https://instapreps.com/',
+    duration: '3 Months',
+    startDate: 'Feb 2026',
+    endDate: 'Apr 2026',
     responsibilities: [
-      "Led the redesign of the company's main product dashboard",
-      'Implemented responsive design patterns for mobile optimization',
-      'Created reusable component library using React and Storybook',
+      'Redesigned the semantic retrieval pipeline for an AI chatbot using Pinecone metadata filtering to narrow candidates before vector search, reducing response time from ~4–5s to ~2–3s (~45% faster).',
+      'Built a live leaderboard system across 3 categories, integrating 4 backend APIs with deduplication and top-3 filtering logic to eliminate manual winner updates.',
+      'Analyzed backend performance using AWS CloudWatch logs to identify bottlenecks and improve application reliability and debuggability.',
+      'Tightened IAM access policies across AWS EC2 and S3 infrastructure, improving deployment reliability and access control.',
     ],
     achievements: [
-      'Improved user engagement by 35% with the new dashboard design',
-      'Delivered project 2 weeks ahead of schedule',
+      'Reduced AI chatbot retrieval response time by approximately 45% through Pinecone metadata filtering and retrieval optimization.',
+      'Automated leaderboard updates across 3 categories by integrating 4 backend APIs with filtering and deduplication logic.',
+      'Gained hands-on experience with AWS EC2, S3, IAM, and CloudWatch in a production development environment.',
+      'Worked across backend systems, AI retrieval, and cloud infrastructure in a real-world development environment.',
     ],
-    type: 'work',
-  },*/
+    type: 'internship',
+  },
 ];
 
 // ============================================
@@ -299,47 +345,45 @@ export const achievements: Achievement[] = [
     organization: 'IEEE Computer Society PDEU',
     date: '2024-2025',
     description:
-      'Led a team of 40+ tech students to organize technical events, workshops, and seminars on campus. Worked closely with the team to plan and execute activities, learn new technologies together, and helped make IEEE the most active student chapter on campus during 2024–2025.',
+      'Led a team of 40+ tech students to organize technical events, workshops, and seminars on campus. Worked closely with the team to plan and execute activities, learn new technologies together, and helped make IEEE one of the most active student chapters on campus during 2024–2025.',
     type: 'leadership',
   },
   {
     id: '2',
     title: 'General Secretary',
-    organization: 'VGA- The filmmaking Club of PDEU',
-    date: '2025-26',
+    organization: 'VGA - The Filmmaking Club of PDEU',
+    date: '2025-2026',
     description:
-      'Being part of VGA allowed me to truly follow my passion for filmmaking. As the General Secretary, I helped with the daily working of the club, coordinated with the team, and took important decisions to keep everything running smoothly. This role gave me the chance to work on creative ideas while also handling responsibilities and learning how to manage a team effectively',
+      'Helped manage the day-to-day operations of the club, coordinated with team members, and contributed to planning and executing filmmaking and cultural activities. Balanced creative work with team coordination, decision-making, and organizational responsibilities.',
     type: 'leadership',
   },
   {
     id: '3',
-    title: 'Certified Full Stack Web Developer',
-    organization: '100xDevs',
+    title: 'Google India Tech Summit Innovate Hackathon',
+    organization: 'Google India Tech Summit',
     date: '2025',
     description:
-      'Completed an end-to-end full stack web development course covering frontend, backend, databases, and real-world project building. Gained hands-on experience in building scalable web applications from scratch.',
-    type: 'certification',
+      'Selected among PDEU’s top teams to advance to the National Level, backed by the Google Student Ambassador Community.',
+    type: 'achievement',
   },
-
-  /*
   {
     id: '4',
-    title: 'Technical Lead - Developer Club',
-    organization: 'University Developer Club',
-    date: '2023 - 2024',
+    title: 'Cisco Campus Ambassador',
+    organization: 'Cisco',
+    date: '2026 - Present',
     description:
-      'Led a team of 15 students in organizing workshops and hackathons.',
+      'Representing Cisco on campus and leading student outreach and technical initiatives. Driving awareness and engagement around Cisco programs, learning opportunities, and technology initiatives among students.',
     type: 'leadership',
   },
   {
     id: '5',
-    title: 'Open Source Contributor',
-    organization: 'Various Projects',
-    date: '2023 - Present',
+    title: 'Certified Full Stack Web Developer',
+    organization: '100xDevs',
+    date: '2025',
     description:
-      'Active contributor to open-source projects with 50+ merged pull requests.',
-    type: 'volunteer',
-  },*/
+      'Completed an end-to-end full stack web development course covering frontend, backend, databases, and real-world project development. Gained hands-on experience building web applications across the full development stack.',
+    type: 'certification',
+  },
 ];
 
 // ============================================
