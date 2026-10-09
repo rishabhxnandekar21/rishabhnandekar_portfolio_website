@@ -408,8 +408,8 @@ export const blogPosts: BlogPost[] = [
 // SOCIAL LINKS
 // ============================================
 export const socialLinks: SocialLinks = {
-  github: 'https://github.com/rishabhxnandekar21',
-  linkedin: 'https://www.linkedin.com/in/rishabhnandekar211',
+  github: 'https://github.com/rishabhxnandekar21/',
+  linkedin: 'https://www.linkedin.com/in/rishabhnandekar21/',
   leetcode: 'https://leetcode.com/',
   twitter: 'https://twitter.com/',
   email: 'mailto:rishabhnandekar@gmail.com',
